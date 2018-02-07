@@ -1,3 +1,4 @@
+
 ## Artificial Neural  Networks
 
 In this article, we will attempt to understand how the (perhaps rightly) glorified artificial neural networks work, and build one from scratch. There is a lot of material out there that describe and implement a neural network in a mathematically and functionally rigourous fashion, but the intention of this article is different. Our attempt is to formulate a layman's understanding of what happens inside a neural network and describe how it works. We will focus on gradually building up each component of the neural network in a naive and simplistic fashion, to keep the basics as clear as possible.
@@ -15,7 +16,7 @@ We can start off by defining what a single neuron is. A neuron can be thought of
 And just like there is a knob on the stereo that controls the volume, the neuron also has an input port which can be used to control how active the neuron becomes. When an input signal is supplied through this input port, we employ a mathematical function that converts this input signal into the activation level of the neuron. This function is rather unimaginatively called the *activation function* of the neuron. The activation or excitation level can be considered as the output from the neuron.
 
 ### Activation function
-For now, let us assume that activation of a neuron is bounded within the range \[0, 1\] for any given input signal. We can think of 0 as the state of the neuron being completely inactive, and 1 as the state of neuron being fully active. So, for any numeric input supplied to the neuron in the interval $$[-\infty, \infty]$$, we need to design an activation function that takes this input number and squishes it into a number between 0 and 1. 
+For now, let us assume that activation of a neuron is bounded within the range \[0, 1\] for any given input signal. We can think of 0 as the state of the neuron being completely inactive, and 1 as the state of neuron being fully active. So, for any numeric input supplied to the neuron in the interval $[-\infty, \infty]$, we need to design an activation function that takes this input number and squishes it into a number between 0 and 1. 
 
 How do we go about designing such an activation function? For now, the only requirement we have is that for any input, the function squishes the input into a number between 0 and 1. For those who know a bit of statistics, there is a very familiar function that maps an arbitrary numeric input into \[0, 1\] interval - the **logit** function which is commonly used in logistic regression. The logit function is given by
 
@@ -33,7 +34,7 @@ f(x) = \frac{1}{1 + e^{-x} } = \sigma(x)\notag
 \end{align}
 $$
 
-We call this special case of the logit function as the **sigmoid**, and use a $$\sigma$$ to represent it. Let us write some code to implement this function.
+We call this special case of the logit function as the **sigmoid**, and use a $\sigma$ to represent it. Let us write some code to implement this function.
 
 
 ```python
@@ -77,9 +78,9 @@ A neural network, as the name suggests, is a set of interconnected neurons. In b
 
 Just as in the biological counterpart, the artificial neural network we are constructing here can be be thought of as a bunch of artificial neurons that are connected to each other, with each link having an associated strength. When the output from one neuron passes to the subsequent neuron, it gets scaled by the strength of the link that connects the two neurons. This strength is called the **weight** of the link. The weight is also a numerical quantity, just like neuron activation level.
 
-As an example, consider the simplest possible neural network with 2 neurons connected to each other through a link. Let the weight of the link be $$w$$. For an input $$x$$ to neuron A, the activation function $$\sigma_A$$ squishes $$x$$ into an number between 0 and 1, and this  is then passed to the synaptic link. The number is then scaled by the weight $$w$$ of the link, and becomes the input to neuron B. Now the activation function $$\sigma_B$$ of neuron B picks this value up and squishes it to \[0, 1\], which is the output of neuron B.
+As an example, consider the simplest possible neural network with 2 neurons connected to each other through a link. Let the weight of the link be $w$. For an input $x$ to neuron A, the activation function $\sigma_A$ squishes $x$ into an number between 0 and 1, and this  is then passed to the synaptic link. The number is then scaled by the weight $w$ of the link, and becomes the input to neuron B. Now the activation function $\sigma_B$ of neuron B picks this value up and squishes it to \[0, 1\], which is the output of neuron B.
 
-Hence the final output $$y$$ is given by  $$ y = \sigma_B( \sigma_A(x) * w) ) $$.
+Hence the final output $y$ is given by  $ y = \sigma_B( \sigma_A(x) * w) ) $.
 
 
 
@@ -99,7 +100,7 @@ print("Small input: x=-20 gives ", simplest_neural_network(x = -20, w = 4))
     
 
 <br />
-Before we consider more complex neural network structures, let us contemplate the problem we are trying to solve using a neural network- let's say we are supplied a set of $$n$$ numbers, and are asked to design a function that takes these $$n$$ numbers as input and produces a given output $$y$$. In mathematical terms, we are asked to guess function $$F$$ in the following equation-
+Before we consider more complex neural network structures, let us contemplate the problem we are trying to solve using a neural network- let's say we are supplied a set of $n$ numbers, and are asked to design a function that takes these $n$ numbers as input and produces a given output $y$. In mathematical terms, we are asked to guess function $F$ in the following equation-
 
 $$
 \begin{align}
@@ -107,7 +108,7 @@ y = F(x_1, x_2, ..., x_n)
 \end{align}
 $$
 
-To make the function a bit easier to guess, let's say we are given several such input-output pairs that the function should produce. Suppose that we are given $$m$$ such pairs of inputs and outputs- in that case, we can rewrite the equation in matrix terms -
+To make the function a bit easier to guess, let's say we are given several such input-output pairs that the function should produce. Suppose that we are given $m$ such pairs of inputs and outputs- in that case, we can rewrite the equation in matrix terms -
 
 $$
 \begin{align}
@@ -136,7 +137,7 @@ Y = F(X)
 \end{align}
 $$
 
-$$F$$ is a function that acts on each row of the input matrix $$X$$ and produces each element of the output $$Y$$ vector. And how on earth would we go about guessing the parameters of this function? 
+$F$ is a function that acts on each row of the input matrix $X$ and produces each element of the output $Y$ vector. And how on earth would we go about guessing the parameters of this function? 
 
 If you're familiar with statistics, then you'd know that there are plenty of parameter estimation techniques that you can choose from, like linear least squares estimators or maximum likelihood functions. And if you're a machine learning enthusiast, you'd probably pick techniques like SVMs or decision trees or neural networks. Both groups of techniques share the same mathematical foundations of optimisation, albeit with different assumptions. And each technique comes with its own set of assumptions, strengths and weaknesses. The point we are making is that the neural network is just one technique that solves the problem that we defined here. Now that we've defined the problem, let us try to design a neural network structure that solves it.
 
@@ -146,11 +147,11 @@ To start with, we can imagine an easily comprehensible structure for the neural 
 2. a middle layer of neurons which are connected to the input layer through a set of weighted links (we call this the hidden layer), 
 3. an output layer of neurons which are connected to the middle layer through another set of weighted links.
 
-Obviously the input layer will have $$n$$ neurons, so as to accept the $$n$$ separate columns (or variables) in our input dataset as defined in the problem. In the hidden layer, we do not have any reasoning at this moment to choose the number of neurons, so we'll choose an arbitrary value. We will think of better ways to choose this more wisely at a later stage. The output layer has one neuron for now, since we have only one column of output in the problem definition above. However, note that there is no reason why the output has to be unidimensional; in fact we can have neural networks with multiple outputs, in which case the original problem becomes finding a function that relates input-output vector pairs.
+Obviously the input layer will have $n$ neurons, so as to accept the $n$ separate columns (or variables) in our input dataset as defined in the problem. In the hidden layer, we do not have any reasoning at this moment to choose the number of neurons, so we'll choose an arbitrary value. We will think of better ways to choose this more wisely at a later stage. The output layer has one neuron for now, since we have only one column of output in the problem definition above. However, note that there is no reason why the output has to be unidimensional; in fact we can have neural networks with multiple outputs, in which case the original problem becomes finding a function that relates input-output vector pairs.
 
 Why did we choose a network with three layers? Because obviously with just one layer of neurons there is no network that can be formed (we do not connect neurons within the same layer). And with two layers, what we get is a very simplistic network that can only guess functions which are a linear combination of the input data. This is because there is only one layer of weights between input and output layer, and all possible functions involve multiplying the input data matrix with a vector of weights. While there is nothing wrong with such a neural network, we are severely limited in the functions to choose from. Such neural networks fail to capture any non-linear relationships that may exist between the input and output. As a result, we stick with 3 layers of neurons in our neural network which is the next simplest configuration.
 
-For our neural network, we link every input neuron with every hidden layer neuron, and similarly every hidden layer neuron with the output layer. This means that if there are $$n$$ input neurons and $$h$$ hidden layer neurons, the there are $$n*h$$ links between the two layers. Similarly, if there are $$p$$ output neurons, then there are $$h*p$$ links between hidden layer and output layer. The outputs from the output layer form the result generated by the network. As stated earlier, each of these links have a weight associated with it, which represents how strongly the two neurons are linked. 
+For our neural network, we link every input neuron with every hidden layer neuron, and similarly every hidden layer neuron with the output layer. This means that if there are $n$ input neurons and $h$ hidden layer neurons, the there are $n*h$ links between the two layers. Similarly, if there are $p$ output neurons, then there are $h*p$ links between hidden layer and output layer. The outputs from the output layer form the result generated by the network. As stated earlier, each of these links have a weight associated with it, which represents how strongly the two neurons are linked. 
 
 We have no reason to believe that the weights of these links should be anything specific, so we make a random initial guess for how strong these links should be. All the weights are initialised to random numbers drawn from a standard normal distribution.
 
@@ -291,14 +292,14 @@ Quite fortunately, matrix algebra comes to our aid. We can implement this forwar
 
 | Notation | Dimensions | Description |
 |:---------------------:|:---:|:---:|
-| $$X$$ | $$m \times n$$ |   Input matrix with $$m$$ rows and $$n$$ columns|
-| $$Y$$ | $$m \times p$$ |   The given output matrix with $$m$$ rows and $$p$$ columns|
-| $$W^{(0)}$$ | $$n \times h_1$$ |   Weight matrix connecting input layer to the hidden layer with $$h_1$$ neurons|
-| $$Z^{(0)} = X W^{(0)}$$ | $$m \times h_1$$ |   The signals coming into the hidden layer neurons|
-| $$A^{(0)} = \sigma(Z^{(0)})$$ | $$m \times h_1$$ |   The set of activation vectors for hidden layer|
-| $$W^{(1)}$$ | $$h_1 \times p$$ |   Weights connecting hidden layer to the output layer with $$p$$ columns|
-| $$Z^{(1)} = A^{(0)} W^{(1)}$$ | $$m \times p$$ |   The signals coming into the output layer|
-| $$ \hat{Y} = \sigma(Z^{(1)})$$ | $$m \times p$$ |   The set of activation vectors for output layer which form the output|
+| $X$ | $m \times n$ |   Input matrix with $m$ rows and $n$ columns|
+| $Y$ | $m \times p$ |   The given output matrix with $m$ rows and $p$ columns|
+| $W^{(0)}$ | $n \times h_1$ |   Weight matrix connecting input layer to the hidden layer with $h_1$ neurons|
+| $Z^{(0)} = X W^{(0)}$ | $m \times h_1$ |   The signals coming into the hidden layer neurons|
+| $A^{(0)} = \sigma(Z^{(0)})$ | $m \times h_1$ |   The set of activation vectors for hidden layer|
+| $W^{(1)}$ | $h_1 \times p$ |   Weights connecting hidden layer to the output layer with $p$ columns|
+| $Z^{(1)} = A^{(0)} W^{(1)}$ | $m \times p$ |   The signals coming into the output layer|
+| $ \hat{Y} = \sigma(Z^{(1)})$ | $m \times p$ |   The set of activation vectors for output layer which form the output|
 
 
 You can verify by hand that these matrix operations correspond to each step that we defined for the forward propagation of inputs. Next we implement this forward propagation in code.
@@ -335,13 +336,13 @@ neuralnet = Neuralnetwork([x.shape[1], 2, y.shape[1]])
 yhat = forwardprop(neuralnet, x)
 
 # View output from forward propagation step
-display(Markdown("<br />**$$X$$:**"), pd.DataFrame(x))
-display(Markdown("<br />**$$\hat{Y}$$:**"), pd.DataFrame(yhat))
-display(Markdown("<br />**$${Y}$$:**"), pd.DataFrame(y))
+display(Markdown("<br />**$X$:**"), pd.DataFrame(x))
+display(Markdown("<br />**$\hat{Y}$:**"), pd.DataFrame(yhat))
+display(Markdown("<br />**${Y}$:**"), pd.DataFrame(y))
 ```
 
 
-<br />**$$X$$:**
+<br />**$X$:**
 
 
 
@@ -394,7 +395,7 @@ display(Markdown("<br />**$${Y}$$:**"), pd.DataFrame(y))
 
 
 
-<br />**$$\hat{Y}$$:**
+<br />**$\hat{Y}$:**
 
 
 
@@ -442,7 +443,7 @@ display(Markdown("<br />**$${Y}$$:**"), pd.DataFrame(y))
 
 
 
-<br />**$${Y}$$:**
+<br />**${Y}$:**
 
 
 
@@ -489,7 +490,7 @@ display(Markdown("<br />**$${Y}$$:**"), pd.DataFrame(y))
 </div>
 
 
-Of course, the output vector $$\hat{Y}$$ we obtain from the neural network is complete junk and is nowhere close to the actual output $$Y$$ vector. This is because we chose the weights of the neural network quite randomly. What we need to do is to think of a way to adjust the weights so that the neural network gives us our expected output for a specfic input. In other words, we want the neural network to guess the underlying function that relates each row in the input matrix $$X$$ to the corresponding output in vector $$Y$$ by adjusting the weights. 
+Of course, the output vector $\hat{Y}$ we obtain from the neural network is complete junk and is nowhere close to the actual output $Y$ vector. This is because we chose the weights of the neural network quite randomly. What we need to do is to think of a way to adjust the weights so that the neural network gives us our expected output for a specfic input. In other words, we want the neural network to guess the underlying function that relates each row in the input matrix $X$ to the corresponding output in vector $Y$ by adjusting the weights. 
 
 How do we do this? This is where the backpropagation algorithm comes in.
 
@@ -500,9 +501,9 @@ We finally get to the difficult part of the neural network design, which involve
 
 First, the network needs to know it is doing a terrible job. We can do this by designing a cost metric, which the network uses to measure how badly it is performing. Next, it needs a way to adjust itself to give better estimates based on this cost metric.
 
-Let us start by defining the cost function. Here again, statistics comes to our rescue. We pick the most commonly used cost metric in statistics- the sum of squared differences between the obtained output and the expected output. To obtain the cost $$C$$, we take the square of the difference between each corresponding elements in the expected output $$Y$$ and the obtained output $$\hat{Y}$$. As stated earlier, there is no restriction on $$Y$$ and $$\hat{Y}$$ to be vectors- these are special cases when there is only one output neuron. There can be multiple output neurons in a neural network, and in such cases $$Y$$ and $$\hat{Y}$$ can be considered as matrices with each column representing each output neuron activation. In general terms, we can consider $$Y$$ and $$\hat{Y}$$ as output matrices (in cases where there are more than one output neuron).
+Let us start by defining the cost function. Here again, statistics comes to our rescue. We pick the most commonly used cost metric in statistics- the sum of squared differences between the obtained output and the expected output. To obtain the cost $C$, we take the square of the difference between each corresponding elements in the expected output $Y$ and the obtained output $\hat{Y}$. As stated earlier, there is no restriction on $Y$ and $\hat{Y}$ to be vectors- these are special cases when there is only one output neuron. There can be multiple output neurons in a neural network, and in such cases $Y$ and $\hat{Y}$ can be considered as matrices with each column representing each output neuron activation. In general terms, we can consider $Y$ and $\hat{Y}$ as output matrices (in cases where there are more than one output neuron).
 
-In mathematical terms, the cost function can be represented as the trace of the square of the error matrix. The diagonal of the matrix consists of the square of each element in $$Y-\hat{Y}$$, and the trace gives us its sum.
+In mathematical terms, the cost function can be represented as the trace of the square of the error matrix. The diagonal of the matrix consists of the square of each element in $Y-\hat{Y}$, and the trace gives us its sum.
 
 $$
 \begin{align}
@@ -510,7 +511,7 @@ C & = tr( (Y - \hat{Y} )^T (Y - \hat{Y} ) )
 \end{align}
 $$
 
-The cost function represents how far away we are from the expected output. Our objective is to minimise this cost function, and we must look for ways we can do this. On examining the equation, we find that while $$Y$$ is fixed and given to us, $$\hat{Y}$$ is calculated through a series of matrix operations in the forward propagation algorithm using the input data $$X$$, the intermediate weight vectors between the neuron layers $$W^{(i)}$$ and the activation function $$\sigma$$. But $$X$$ is fixed, and we have already decided that our activation function is the sigmoid, which leaves us with one choice to minimize cost- modifying the synaptic weights.
+The cost function represents how far away we are from the expected output. Our objective is to minimise this cost function, and we must look for ways we can do this. On examining the equation, we find that while $Y$ is fixed and given to us, $\hat{Y}$ is calculated through a series of matrix operations in the forward propagation algorithm using the input data $X$, the intermediate weight vectors between the neuron layers $W^{(i)}$ and the activation function $\sigma$. But $X$ is fixed, and we have already decided that our activation function is the sigmoid, which leaves us with one choice to minimize cost- modifying the synaptic weights.
 
 Our objective hence becomes minimising the cost function with respect to the synaptic weights in the network. Minimization of a function involves knowing the gradient of that function with respect to the independent variables. Since we have a function with several weights, our cost gradient vector becomes
 
@@ -545,21 +546,26 @@ Here, we can substitute each of these partial derivatives using the following-
 
 | Derivatives                     | Description|
 |:--------------------------------|:-----------|
-|$$\frac{\partial{C}}{\partial{A^{(L)}}}=-2(Y-\hat{Y})$$| Partial derivative of cost function with respect to $$\hat{Y}$$  |
-|$$\frac{\partial{A^{(L)}}}{\partial{Z^{(L)}}}=\sigma^{'}(Z^{(L)})$$| Partial derivative of sigmoid activation function $$\sigma$$ with respect to pre-activation vector $$Z^{(L)}$$  |
-|$$\frac{\partial{Z^{(L)}}}{\partial{W^{(L)}}}=A^{(L-1)}$$|Partial derivative of pre-activation vector $$Z^{(L)}$$ with respect to weights $$W^{(L)}$$|
-|$$\frac{\partial{Z^{(L)}}}{\partial{A^{(L-1)}}}=W^{(L)}$$|Partial derivative of pre-activation vector $$Z^{(L)}$$ with respect to previous hidden layer activations $$A^{(L-1)}$$|
-|$$\frac{\partial{A^{(L-1)}}}{\partial{Z^{(L-1)}}}=\sigma^{'}(Z^{(L-1)})$$|Partial derivative of sigmoid function $$\sigma$$ with respect to pre-activation vector $$Z^{(L-1)}$$ for hidden layer neurons |
-|$$\frac{\partial{Z^{(L-1)}}}{\partial{W^{(L-1)}}} = X$$|Input Data |
+|$\frac{\partial{C}}{\partial{A^{(L)}}}=-2(Y-\hat{Y})$| Partial derivative of cost function with respect to $\hat{Y}$  |
+|$\frac{\partial{A^{(L)}}}{\partial{Z^{(L)}}}=\sigma^{'}(Z^{(L)})$| Partial derivative of sigmoid activation function $\sigma$ with respect to pre-activation vector $Z^{(L)}$  |
+|$\frac{\partial{Z^{(L)}}}{\partial{W^{(L)}}}=A^{(L-1)}$|Partial derivative of pre-activation vector $Z^{(L)}$ with respect to weights $W^{(L)}$|
+|$\frac{\partial{Z^{(L)}}}{\partial{A^{(L-1)}}}=W^{(L)}$|Partial derivative of pre-activation vector $Z^{(L)}$ with respect to previous hidden layer activations $A^{(L-1)}$|
+|$\frac{\partial{A^{(L-1)}}}{\partial{Z^{(L-1)}}}=\sigma^{'}(Z^{(L-1)})$|Partial derivative of sigmoid function $\sigma$ with respect to pre-activation vector $Z^{(L-1)}$ for hidden layer neurons |
+|$\frac{\partial{Z^{(L-1)}}}{\partial{W^{(L-1)}}} = X$|Input Data |
 
 Based on these substitutions, we can rewrite the above equations as
+
+$$
 \begin{align}
 \frac{\partial C}{\partial{W^{(L)}}} = -2(Y-\hat{Y}) \cdot \sigma^{'}(Z^{(L)}) \cdot A^{(L-1)}
 \end{align}
+$$
+
+$$
 \begin{align}
 \frac{\partial C}{\partial{W^{(L-1)}}} = -2(Y-\hat{Y}) \cdot \sigma^{'}(Z^{(L)}) \cdot W^{(L)} \cdot \sigma^{'}(Z^{(L-1)}) \cdot X
 \end{align}
-
+$$
 
 As a general note, in case we have further hidden layers, this repeated application of chain rule differentiation is continued until we get the entire cost gradient vector. This can be automated easily enough, but for simplicity's sake we keep our implementation limited to the three layers for now. 
 
@@ -686,7 +692,7 @@ print(neuralnet.activation_vectors[-1])
 So we observe here that using our simple training algorithm, we managed to progressively reduce the error to get closer to the required output. However, with our naive training algorithm, the convergence is extremely slow and our outputs do not get close to our required outputs fast enough. Can we do better? Quite possibly, if we give more thought to designing better training algorithms and better neural network design.
 
 So far, we've made the following assumptions as we progressed through our understanding of how neural networks worked.
-* The activation function was assumed to be sigmoid because it met our requirement to map an infinite interval input into $$[0,1]$$.
+* The activation function was assumed to be sigmoid because it met our requirement to map an infinite interval input into $[0,1]$.
 * The weights were initialised in a random fashion.
 * The number of hidden layers was chosen to be 1 for simplicity's sake.
 * The number of neurons in the hidden layer was arbitrarily chosen.
