@@ -1,6 +1,3 @@
----
-layout: page
----
 ## Artificial Neural  Networks
 
 In this article, we will attempt to understand how the (perhaps rightly) glorified artificial neural networks work, and build one from scratch. There is a lot of material out there that describe and implement a neural network in a mathematically and functionally rigourous fashion, but the intention of this article is different. Our attempt is to formulate a layman's understanding of what happens inside a neural network and describe how it works. We will focus on gradually building up each component of the neural network in a naive and simplistic fashion, to keep the basics as clear as possible.
