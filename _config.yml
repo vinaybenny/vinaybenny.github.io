@@ -1,5 +1,20 @@
-name: Vinay Benny, Math Lover
+name: Vinay Benny
 markdown: kramdown
+
+title: notes
+description: on math, stats, machine learning, and computer science
+highlighter:      pygments
+url:              https://vinaybenny.github.io/
+baseurl:          /
+
+# Permalinks
 permalink: /blog/:year/:month/:day/:title
+
 plugins:
   - jekyll-sitemap
+  
+# Custom vars
+version:        0.1.1
+linkedin:		https://www.linkedin.com/in/vinay-benny-b4856170/
+github:
+  repo:         https://github.com/vinaybenny
