@@ -5,7 +5,7 @@ title: notes
 description: on math, stats, machine learning, and computer science
 highlighter:      pygments
 url:              https://vinaybenny.github.io/
-baseurl:          /
+baseurl:          https://vinaybenny.github.io/
 
 # Permalinks
 permalink: /blog/:year/:month/:day/:title
