@@ -69,7 +69,7 @@ pyplot.show()
 ```
 
 
-![My helpful screenshot]({{ "/assets/images/2018-02-01-neural-networks-files_3_0.png" | absolute_url }})
+![My helpful screenshot]({{ "/assets/images/2018-02-01-neural-networks-files_3_0.png" }})
 
 
 ### The Neural Network
