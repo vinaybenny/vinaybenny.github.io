@@ -1,2 +1,1 @@
 # vinaybenny.github.io
-Blog
